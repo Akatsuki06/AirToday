@@ -1,9 +1,49 @@
 from django.db import models
 
 # Create your models here.
-from django.contrib.auth.models import User, UserManager
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+from django.utils import timezone
 
-class UserRegistration(User):
+class CustomUserManager(BaseUserManager):
+    def create_user(self,email,password,location,state):
+        if not email:
+            raise ValueError('email ?')
+        if not password:
+            raise ValueError('password?')
 
-    location = models.CharField(max_length=50)#contains long and lats
-    objects = UserManager()
+
+        user = self.model(email= self.normalize_email(email),
+                        location = location,
+                         state = state )
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+    def create_superuser(self,email,password):
+        user = self.create_user(email,password,'global','global')
+        user.is_staff = True
+        user.is_superuser=True
+        user.save()
+        return user
+
+#its neccessary to have PermissionsMixin with AbstractBaseUser
+class CustomUser(AbstractBaseUser,PermissionsMixin):
+    email = models.EmailField(max_length=150, unique = True, null = False, blank = False)
+    phone = models.CharField(max_length=10)
+    location = models.CharField(max_length=150)#contains lon and lat
+    state = models.CharField(max_length=20)
+    is_staff = models.BooleanField(default = False)
+    is_active = models.BooleanField(default=True)
+
+    objects = CustomUserManager()
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = []#field for super user creation
+
+    def __str__(self):
+        return self.email
+
+    def get_full_name(self):
+        return self.email 
+
+    def get_short_name(self):
+        return self.email
