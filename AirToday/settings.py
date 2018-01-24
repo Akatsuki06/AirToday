@@ -25,7 +25,7 @@ SECRET_KEY = 's9@+mr^g5yp6#8o)*z3r#6-xe^kvfm-*d#i&c7*aw491sqa(@8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'airapp',
 ]
 
 MIDDLEWARE = [
