@@ -1,11 +1,17 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>WHAT</title>
-  </head>
-  <body>
-    HELLO
+{% extends "base.html" %}
+{% block content %}
 
-  </body>
-</html>
+    <h1>{{hello}}</h1>
+    <form method="post">
+      {% csrf_token %}
+      {{  form.as_p }}
+      <button type="submit" name="submit" >Submit</button>
+    </form>
+    <input id="searchInput" class="input-controls" type="text" placeholder="Enter a location">
+    <div class="map" id="map" style="width: 100%; height: 300px;"></div>
+    <div class="form_area">
+        <input type="text" name="location" id="location">
+        <input type="text" name="lat" id="lat">
+        <input type="text" name="lng" id="lng">
+    </div>
+{% endblock %}

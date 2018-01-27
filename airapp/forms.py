@@ -1,6 +1,16 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .models import CustomUser
-# class myForm(forms.Form):
-#     city_list = ['city1','city2']
-#     city = forms.ChoiceField(choices=city_list)
+
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+
+class CustomUserForm(forms.ModelForm):
+    # state_list =[('state1','state1'),('state2','state2')]
+    # state = forms.ChoiceField(choices=state_list)
+    class Meta():
+        model = CustomUser
+        fields = ('email','password','location','coordinates')
+
+        widgets = {
+            'password': forms.PasswordInput()
+        }
