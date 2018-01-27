@@ -1,14 +1,19 @@
 
 import requests as req
+import json
+
 class Location():
     """location class has functionality to get ip,loc,lat aqi etc..."""
     def __init__(self, request):
         super(Location, self).__init__()
         self.request = request
 
-    def get_AQI(self):
-        location = get_location()
-        lat,lon = location['loc'].split(',')
+    def get_AQI(self, location = None):
+        if location == None:
+            location = self.get_location()
+            lat,lon = location['loc'].split(',')
+        else:
+            lat,lon = location.split(',')
         print('loc in inside aqi',lat,lon)
         params={
         'lat':lat,
@@ -20,7 +25,7 @@ class Location():
         print(data.url,data.text)
 
     def get_location(self):
-        ip=get_client_ip()
+        ip=self.get_client_ip()
         ip='169.149.218.89'
         user_data = 'https://ipinfo.io/{0}/json'.format(ip)
         data = json.loads(req.get(user_data).text)

@@ -5,12 +5,31 @@ from .models import CustomUser
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
 class CustomUserForm(forms.ModelForm):
-    # state_list =[('state1','state1'),('state2','state2')]
-    # state = forms.ChoiceField(choices=state_list)
     class Meta():
         model = CustomUser
-        fields = ('email','password','location','coordinates')
-
+        fields = ('email','phone','password','location','coordinates')
         widgets = {
-            'password': forms.PasswordInput()
-        }
+            'email': forms.EmailInput(attrs=
+                        {'class':'form-control input-lg',
+                        'placeholder':'email@email.email'}
+                        ),
+            'phone': forms.TextInput(attrs=
+                        {'class':'form-control input-lg',
+                        'placeholder':'1234567890'}
+                        ),
+            'password': forms.PasswordInput(attrs=
+                        {'class':'form-control input-lg',
+                        'placeholder':'password'}),
+            'location': forms.Textarea(attrs=
+                        {'class':'form-control input-lg',
+                        'id':'locationid','rows':2, 'cols':10,
+                        'readonly':'readonly',
+                        'placeholder':'location'}
+                        ),
+            'coordinates': forms.TextInput(attrs=
+                        {'class':'form-control input-lg',
+                        'id':'coordinatesid',
+                        'readonly':'readonly',
+                        'placeholder':'coordinates'}
+                        )
+                    }

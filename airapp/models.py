@@ -10,8 +10,6 @@ class CustomUserManager(BaseUserManager):
             raise ValueError('email ?')
         if not password:
             raise ValueError('password?')
-
-
         user = self.model(email= self.normalize_email(email),
                         location = location,
                          coordinates = coordinates )
@@ -29,9 +27,9 @@ class CustomUserManager(BaseUserManager):
 #its neccessary to have PermissionsMixin with AbstractBaseUser
 class CustomUser(AbstractBaseUser,PermissionsMixin):
     email = models.EmailField(max_length=150, unique = True, null = False, blank = False)
-    phone = models.CharField(max_length=10)
+    phone = models.CharField(max_length=10,blank=True)
     location = models.CharField(max_length=150)#contains lon and lat
-    coordinates = models.CharField(max_length=20)
+    coordinates = models.CharField(max_length=150)
     is_staff = models.BooleanField(default = False)
     is_active = models.BooleanField(default=True)
 

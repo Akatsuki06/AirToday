@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}
+Register
+{% endblock %}
+{% block content %}
+
+    <div class="row">
+
+       <div class="col-sm-8">
+         <div class="panel panel-success">
+          <div class="panel-heading">Select your positino</div>
+          <div class="panel-body">
+            <input id="searchInput" class="input-controls form-control input-lg" type="text" placeholder="Enter a location">
+            <div class="map" id="map" style="width: 100%; height: 400px;"></div></div>
+        </div>
+
+       </div>
+       <div class="col-sm-4">
+         <form method="post">
+            {% csrf_token %}
+            {{  form.as_p }}
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+
+     </div>
+
+{% endblock %}
