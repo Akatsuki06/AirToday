@@ -61,11 +61,35 @@ function initialize() {
   else{
        var input = document.getElementById('searchInput');
         var autocomplete = new google.maps.places.Autocomplete(input);
-        autocomplete.setComponentRestrictions({'country': 'in'});
+        autocomplete.setComponentRestrictions({'country': 'in'});  google.maps.event.addListener(autocomplete, 'place_changed', function() {
+          var place = autocomplete.getPlace();
+            // document.getElementById('city2').value = place.name;
+            // document.getElementById('cityLat').value = place.geometry.location.lat();
+            // document.getElementById('cityLng').value = place.geometry.location.lng();
+              var lat = place.geometry.location.lat();
+              var lng = place.geometry.location.lng();
+              var address = place.formatted_address;
+              setAll();
+                });
+        document.getElementById("searchbutton").onclick = function () {
+            document.getElementById('NO2').innerHTML = "Some text to enter";
+           };
   }
 
 
 }
+function setAll(lat,lng,address) {
+
+    document.getElementById('NO2').innerHTML = no2;
+}
+function httpGet(theUrl)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp.responseText;
+}
+
 function bindDataToForm(address,lat,lng){
    document.getElementById('locationid').value = address;
    document.getElementById('coordinatesid').value = ((lat.toString()).concat(",",lng.toString())).toString();

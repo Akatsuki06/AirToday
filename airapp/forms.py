@@ -33,3 +33,24 @@ class CustomUserForm(forms.ModelForm):
                         'placeholder':'coordinates'}
                         )
                     }
+
+class SearchForm(forms.ModelForm):
+    class Meta():
+        model = CustomUser
+        fields = ('location','coordinates')
+        widgets = {
+            'location': forms.Textarea(attrs=
+                        {'class':'form-control input-lg',
+                        'id':'locationid','rows':2, 'cols':10,
+                        'readonly':'readonly',
+                        
+                        'placeholder':'location'}
+                        ),
+            'coordinates': forms.TextInput(attrs=
+                        {'class':'form-control input-lg',
+                        'id':'coordinatesid',
+                        'readonly':'readonly',
+                        'placeholder':'coordinates'}
+                        )
+
+        }

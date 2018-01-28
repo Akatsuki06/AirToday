@@ -18,6 +18,7 @@
   padding: 0 11px 0 13px;
   text-overflow: ellipsis;
   width: 50%;
+
 }
 #searchInput:focus {
   border-color: #4d90fe;
@@ -35,6 +36,11 @@ justify-content: center; /* align horizontal */
 align-items: center;
 }
 body {
-  background: url('../images/background.png');
+  background: url('../images/background4.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
   color: white;
 }
+.top-buffer {
+   margin-top:18%;
+  }

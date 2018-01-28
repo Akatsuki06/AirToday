@@ -4,23 +4,134 @@ Home
 {% endblock %}
 {% block content %}
 
-<div class="col-md-6 col-md-offset-3">     <!-- Search Form -->
-<form role="form">
+<div class="col-md-8 col-md-offset-2">     <!-- Search Form -->
+
+
+<form method="post">
   <div class="row">
-  		<h2>Stylish Search Box</h2>
+  <div class="input-group col-md-12">
+    <div class="col-md-4 col-md-offset-5">
+  		<h2>Air Quality</h2>
+    </div>
+  </div>
+  <div class="w-100"></div>
       <div class="input-group col-md-12">
-          <input type="text" id ="searchInput"
-          class="search-query form-control"
-          style="width: 100%" placeholder="Search" />
+          <input type="text" id ="searchInput"class="search-query form-control"  style="width: 100%" placeholder="Search" />
           <span class="input-group-btn">
-              <button class="btn btn-danger" type="button">
+              <button class="btn btn-danger" id="searchbutton" type="button">
                   <span class=" glyphicon glyphicon-search">
                   </span>
               </button>
           </span>
       </div>
   	</div>
+
   </form>
 </div>
 
+<div class="row top-buffer">
+<div class="py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-header"> Satisfactory </div>
+          <div class="card-body">
+            <h4>88</h4>
+            <h6 class="text-muted">Subtitle</h6>
+            <p class=" p-y-1">Location, lat and lng</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>NO2</td>
+              <td id ="NO2">Otto</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>O3</td>
+              <td id="O3">Thornton</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>PM2.5</td>
+              <td id ="PM25">the Bird</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>SO2</td>
+              <td id ="SO2">the Bird</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>PM10</td>
+              <td id ="PM10">the Bird</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>CO</td>
+              <td id ="CO">the Bird</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-md-4">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Humidity</td>
+              <td id="humidity">Otto</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Barometric Pressure</td>
+              <td id="bp">Thornton</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Wind Speed</td>
+              <td id="ws">the Bird</td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Wind Direction</td>
+              <td id="wd">Otto</td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Sun Rise</td>
+              <td id="sr">Otto</td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Sun Set</td>
+              <td id="ss">Otto</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
 {% endblock %}

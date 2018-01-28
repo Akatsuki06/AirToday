@@ -35,8 +35,17 @@ class RegisterView(TemplateView):
 class IndexView(TemplateView):
     template_name = 'index.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(IndexView, self).get_context_data(**kwargs)
+        form = forms.SearchForm()
+        context['form'] = form
+        return context
+
     def get(self,request, **kwargs):
         # loc  = location.Location(request)
         # aqi = loc.get_AQI(location='31.6798,76.5026')
 
         return render(request,'index.html')
+
+    # def post(self,request,**kwargs):
+    #     form =
