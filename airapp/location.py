@@ -52,3 +52,4 @@ class Location():
                 ip = proxies[0]
 
         return ip
+        

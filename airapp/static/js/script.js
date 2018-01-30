@@ -63,31 +63,43 @@ function initialize() {
         var autocomplete = new google.maps.places.Autocomplete(input);
         autocomplete.setComponentRestrictions({'country': 'in'});  google.maps.event.addListener(autocomplete, 'place_changed', function() {
           var place = autocomplete.getPlace();
-            // document.getElementById('city2').value = place.name;
-            // document.getElementById('cityLat').value = place.geometry.location.lat();
-            // document.getElementById('cityLng').value = place.geometry.location.lng();
+
               var lat = place.geometry.location.lat();
               var lng = place.geometry.location.lng();
               var address = place.formatted_address;
-              setAll();
+              httpGet(lat,lng);
                 });
-        document.getElementById("searchbutton").onclick = function () {
-            document.getElementById('NO2').innerHTML = "Some text to enter";
-           };
+
   }
 
 
 }
-function setAll(lat,lng,address) {
-
-    document.getElementById('NO2').innerHTML = no2;
+function setAll(text) {
+    var obj = JSON.parse(text);
+    var params = obj.data.aqiParams;
+    for (var i = 0; i < params.length; i++) {
+        var name = ((params[i].name).toString()).toLowerCase();
+        var value = (params[i].value).toString()
+        name = name.replace(/[\W_]/g, "")
+        document.getElementById(name).innerHTML = value;
+    }
+    var status = obj.data.text;
+    var alert = obj.data.alert;
+    var value = obj.data.value;
+    var source = obj.data.source.name;
+    var temp = obj.data.temp;
 }
-function httpGet(theUrl)
+function httpGet(lat,lng)
 {
+    var url = 'http://api.airpollutionapi.com/1.0/aqi?'+'lat='+lat+'&lon='+lng+
+                  '&APPID=m953d6onf11vvufmc8gmugatqb';
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
-    xmlHttp.send( null );
-    return xmlHttp.responseText;
+    xmlHttp.onreadystatechange = function(){
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+            setAll(xmlHttp.responseText);
+    }
+    xmlHttp.open("GET", url, true); // true for asynchronous
+    xmlHttp.send(null);
 }
 
 function bindDataToForm(address,lat,lng){
