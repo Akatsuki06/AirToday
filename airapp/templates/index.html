@@ -8,23 +8,18 @@ Home
 
 
 <form method="post">
+<p class="text-center">
+  <span class=" glyphicon glyphicon-search" style="font-size: 5.2em;">
+  </span>
+</p>
+
+
   <div class="row">
-  <div class="input-group col-md-12">
-    <div class="col-md-4 col-md-offset-5">
-  		<h2>Air Quality</h2>
-    </div>
-  </div>
-  <div class="w-100"></div>
-      <div class="input-group col-md-12">
-          <input type="text" id ="searchInput"class="search-query form-control"  style="width: 100%" placeholder="Search" />
-          <span class="input-group-btn">
-              <button class="btn btn-danger" id="searchbutton" type="button">
-                  <span class=" glyphicon glyphicon-search">
-                  </span>
-              </button>
-          </span>
+      <div class="col-md-12">
+          <input type="text" id ="searchInput"class="search-query form-control"  placeholder="Enter your location" />
       </div>
-  	</div>
+
+</div>
 
   </form>
 </div>
@@ -35,11 +30,11 @@ Home
     <div class="row">
       <div class="col-md-4">
         <div class="card">
-          <div class="card-header"> Satisfactory </div>
+          <div class="card-header" id="status"> Status </div>
           <div class="card-body">
-            <h4>88</h4>
-            <h6 class="text-muted">Subtitle</h6>
-            <p class=" p-y-1">Location, lat and lng</p>
+            <h2 id="value">88</h2>
+            <h5 class="text-muted" id ="details">Subtitle</h5>
+            <p class="p-y-1" id="desc">Location, lat and lng</p>
           </div>
         </div>
       </div>
@@ -70,8 +65,8 @@ Home
             </tr>
             <tr>
               <td>4</td>
-              <td>so2</td>
-              <td id ="SO2">-</td>
+              <td>SO2</td>
+              <td id ="so2">-</td>
             </tr>
             <tr>
               <td>5</td>

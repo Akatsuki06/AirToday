@@ -63,12 +63,12 @@ function initialize() {
         var autocomplete = new google.maps.places.Autocomplete(input);
         autocomplete.setComponentRestrictions({'country': 'in'});  google.maps.event.addListener(autocomplete, 'place_changed', function() {
           var place = autocomplete.getPlace();
+          var lat = place.geometry.location.lat();
+          var lng = place.geometry.location.lng();
+          var address = place.formatted_address;
+          httpGet(lat,lng);
 
-              var lat = place.geometry.location.lat();
-              var lng = place.geometry.location.lng();
-              var address = place.formatted_address;
-              httpGet(lat,lng);
-                });
+    });
 
   }
 
@@ -81,13 +81,26 @@ function setAll(text) {
         var name = ((params[i].name).toString()).toLowerCase();
         var value = (params[i].value).toString()
         name = name.replace(/[\W_]/g, "")
+        if(document.getElementById(name).innerHTML){
+          console.log(name);
+        }
         document.getElementById(name).innerHTML = value;
     }
-    var status = obj.data.text;
-    var alert = obj.data.alert;
-    var value = obj.data.value;
-    var source = obj.data.source.name;
-    var temp = obj.data.temp;
+    var status = obj.data.text.toString();
+    var alert = obj.data.alert.toString();
+    var value = obj.data.value.toString();
+    var updated = obj.data.updated.toString();
+    var source = obj.data.source.name.toString();
+    var temp = obj.data.temp.toString();
+    var color = obj.data.color.toString();
+    document.getElementById("status").innerHTML = status;
+    document.getElementById("value").innerHTML = value;
+    document.getElementById("details").innerHTML = 'Updated on: '+updated;
+                                                    // '\n Temperature: '+temp+
+                                                    //   '\nsource: '+source;
+    document.getElementById("desc").innerHTML = 'Description: '+alert+
+                                                '<br> Source: '+source;
+    document.getElementById("desc").style.backgroundColor = color;
 }
 function httpGet(lat,lng)
 {
