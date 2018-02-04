@@ -8,6 +8,8 @@ import json
 from . import forms, models
 from . import location
 
+from .tasks import sayhello
+
 class RegisterView(TemplateView):
     template_name = 'register.html'
     # context_object_name = 'data'
@@ -35,17 +37,9 @@ class RegisterView(TemplateView):
 class IndexView(TemplateView):
     template_name = 'index.html'
 
-    def get_context_data(self, **kwargs):
-        context = super(IndexView, self).get_context_data(**kwargs)
-        form = forms.SearchForm()
-        context['form'] = form
-        return context
-
     def get(self,request, **kwargs):
         # loc  = location.Location(request)
-        # aqi = loc.get_AQI(location='31.6798,76.5026')
-
+        # text = loc.get_AQI()
+        # print(text)
+        sayhello.delay()
         return render(request,'index.html')
-
-    # def post(self,request,**kwargs):
-    #     form =

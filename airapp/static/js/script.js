@@ -59,7 +59,9 @@ function initialize() {
      });
   }
   else{
+    
        var input = document.getElementById('searchInput');
+
         var autocomplete = new google.maps.places.Autocomplete(input);
         autocomplete.setComponentRestrictions({'country': 'in'});  google.maps.event.addListener(autocomplete, 'place_changed', function() {
           var place = autocomplete.getPlace();
@@ -93,13 +95,16 @@ function setAll(text) {
     var source = obj.data.source.name.toString();
     var temp = obj.data.temp.toString();
     var color = obj.data.color.toString();
+    var coordinates = obj.data.coordinates.latitude.toString()+','+
+                      obj.data.coordinates.longitude.toString();
     document.getElementById("status").innerHTML = status;
     document.getElementById("value").innerHTML = value;
     document.getElementById("details").innerHTML = 'Updated on: '+updated;
                                                     // '\n Temperature: '+temp+
                                                     //   '\nsource: '+source;
-    document.getElementById("desc").innerHTML = 'Description: '+alert+
-                                                '<br> Source: '+source;
+    document.getElementById("desc").innerHTML = '<b>Location: </b>'+coordinates+
+                                          '<br><b>Description:</b> '+alert+
+                                          '<br> <b>Source:</b> '+source;
     document.getElementById("desc").style.backgroundColor = color;
 }
 function httpGet(lat,lng)

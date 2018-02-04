@@ -14,7 +14,7 @@ class Location():
             lat,lon = location['loc'].split(',')
         else:
             lat,lon = location.split(',')
-        print('loc in inside aqi',lat,lon)
+        # print('loc in inside aqi',lat,lon)
         params={
         'lat':lat,
         'lon':lon,
@@ -23,14 +23,15 @@ class Location():
         url ='http://api.airpollutionapi.com/1.0/aqi'
         data = req.get(url,params=params)
         print(data.url,data.text)
+        return data.json
 
     def get_location(self):
         ip=self.get_client_ip()
         ip='169.149.218.89'
         user_data = 'https://ipinfo.io/{0}/json'.format(ip)
         data = json.loads(req.get(user_data).text)
-        print('ip:',data['ip'],'city: ',data['city'])
-        print('loc',data['loc'])
+        # print('ip:',data['ip'],'city: ',data['city'])
+        # print('loc',data['loc'])
         return data
 
     def get_client_ip(self):
@@ -52,4 +53,3 @@ class Location():
                 ip = proxies[0]
 
         return ip
-        
