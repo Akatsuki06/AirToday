@@ -33,6 +33,7 @@ class RegisterView(TemplateView):
 
         return render(request,'index.html')
 
+from django.core.mail import send_mail
 
 class IndexView(TemplateView):
     template_name = 'index.html'
@@ -41,5 +42,6 @@ class IndexView(TemplateView):
         # loc  = location.Location(request)
         # text = loc.get_AQI()
         # print(text)
-        sayhello.delay()
+        # sayhello.delay()\
+
         return render(request,'index.html')

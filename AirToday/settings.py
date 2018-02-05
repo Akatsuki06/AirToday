@@ -131,9 +131,11 @@ CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'Asia/Kolkata'
-# CELERY_BEAT_SCHEDULE = {
-#         'task-number-one': {
-#         'task': 'airapp.tasks.sayhello',
-#         'schedule': 30.0,
-#             }
-#     }
+
+from . import credentials as cred
+EMAIL_HOST = cred.EMAIL_HOST
+EMAIL_HOST_USER = cred.EMAIL_HOST_USER
+EMAIL_HOST_PASSWORD =cred.EMAIL_HOST_PASSWORD
+EMAIL_PORT = cred.EMAIL_PORT
+EMAIL_USE_TLS = cred.EMAIL_USE_TLS
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

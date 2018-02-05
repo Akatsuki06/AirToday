@@ -18,8 +18,13 @@ app.config_from_object('django.conf:settings')
 app.autodiscover_tasks()
 #
 app.conf.beat_schedule = {
-    'add-every-30-seconds': {
+    'sayhello': {
         'task': 'airapp.tasks.sayhello',
+        'schedule': 30.0,
+        # 'schedule': crontab(),  # change to `crontab(minute=0, hour=0)` if you want it to run daily at midnight
+    },
+    'sendmail': {
+        'task': 'airapp.tasks.sendmail',
         'schedule': 30.0,
         # 'schedule': crontab(),  # change to `crontab(minute=0, hour=0)` if you want it to run daily at midnight
     },

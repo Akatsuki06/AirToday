@@ -1,7 +1,7 @@
 
 import requests as req
 import json
-
+from AirToday import credentials as cred
 class Location():
     """location class has functionality to get ip,loc,lat aqi etc..."""
     def __init__(self, request):
@@ -18,9 +18,11 @@ class Location():
         params={
         'lat':lat,
         'lon':lon,
-        'APPID':'m953d6onf11vvufmc8gmugatqb',
+        'APPID':cred.AIRPOLLUTION_APPID
+        # 'APPID':'m953d6onf11vvufmc8gmugatqb',
         }
-        url ='http://api.airpollutionapi.com/1.0/aqi'
+        # url ='http://api.airpollutionapi.com/1.0/aqi'
+        url = AIRPOLLUTION_APPURL
         data = req.get(url,params=params)
         print(data.url,data.text)
         return data.json
