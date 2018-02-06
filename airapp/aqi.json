@@ -1,0 +1,34 @@
+{"status":"success",
+  "msg":null,
+  "data":{
+    "text":"Poor",
+    "alert":"Poor air quality index in this location. It may cause breathing discomfort to people on prolonged exposure, and discomfort to people with heart disease.",
+    "color":"#FF9A00;",
+    "value":95,
+    "updated":"Mon Jan 29 12:15:00 +0000 2018",
+    "temp":"28",
+    "content":null,
+    "country":"India",
+    "clouds":"description = clear sky, image = http://airpollutionapi.com/images/icons/01d.png",
+    "coordinates":{
+                  "latitude":12.8721142,
+                  "longitude":74.84340259999999
+                },
+    "source":{
+              "name":"Central pollution control board, India, Haveri KSPCB",
+              "coordinates":{"latitude":14.8266033,"longitude":75.1664857}
+                },
+    "accuracy":"220.11 Km",
+    "aqiParams":[
+      {"name":"PM2.5","value":"95.0 µg/m³","color":"#FF9A00;","text":"Poor"},
+      {"name":"PM10","value":"203.0 µg/m³","color":"#FFCF00;","text":"Moderate"},
+      {"name":"Humidity","value":"62.0 %","color":null,"text":null},
+      {"name":"Barometric Pressure","value":"1009.0 hPa","color":null,"text":null},
+      {"name":"Wind Speed","value":" 10.29 m/s","color":null,"text":null},
+      {"name":"Wind Direction","value":"270.0 degrees","color":null,"text":null},
+      {"name":"Sun Rise","value":"06:57:02 AM","color":null,"text":null},
+      {"name":"Sun Set","value":"06:30:43 PM","color":null,"text":null}
+                ]
+
+      }
+}

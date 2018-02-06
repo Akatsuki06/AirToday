@@ -1,7 +1,10 @@
 /* script */
 function initialize() {
+
   var title = document.title;
   if (title == "Register"){
+    // if its register page
+    console.log('register page running');
     var latlng = new google.maps.LatLng(28.5355161,77.39102649999995);
      var map = new google.maps.Map(document.getElementById('map'), {
        center: latlng,
@@ -58,19 +61,19 @@ function initialize() {
          });
      });
   }
-  else{
-    
-       var input = document.getElementById('searchInput');
+  else{ //if its index page
+    console.log('index page running');
+     var input = document.getElementById('searchInput');
+     var autocomplete = new google.maps.places.Autocomplete(input);
 
-        var autocomplete = new google.maps.places.Autocomplete(input);
-        autocomplete.setComponentRestrictions({'country': 'in'});  google.maps.event.addListener(autocomplete, 'place_changed', function() {
-          var place = autocomplete.getPlace();
-          var lat = place.geometry.location.lat();
-          var lng = place.geometry.location.lng();
-          var address = place.formatted_address;
-          httpGet(lat,lng);
-
-    });
+     httpGetIP()
+     autocomplete.setComponentRestrictions({'country': 'in'});
+     google.maps.event.addListener(autocomplete, 'place_changed', function() {
+        var place = autocomplete.getPlace();
+        var lat = place.geometry.location.lat();
+        var lng = place.geometry.location.lng();
+        httpGet(lat,lng);
+  });
 
   }
 
@@ -110,7 +113,7 @@ function setAll(text) {
 function httpGet(lat,lng)
 {
     var url = 'http://api.airpollutionapi.com/1.0/aqi?'+'lat='+lat+'&lon='+lng+
-                  '&APPID=m953d6onf11vvufmc8gmugatqb';
+                  '&APPID='+'{{ APPID }}';
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function(){
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
@@ -118,6 +121,16 @@ function httpGet(lat,lng)
     }
     xmlHttp.open("GET", url, true); // true for asynchronous
     xmlHttp.send(null);
+}
+
+function httpGetIP(){
+  var ip = "{{ appid }}"
+  var url =' https://freegeoip.net/json/'
+
+
+  
+  console.log(ip);
+
 }
 
 function bindDataToForm(address,lat,lng){

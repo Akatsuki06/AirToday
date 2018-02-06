@@ -4,10 +4,10 @@ Home
 {% endblock %}
 {% block content %}
 
-<div class="col-md-8 col-md-offset-2">     <!-- Search Form -->
+
+<div class="col-md-8 col-md-offset-2">
 
 
-<form method="post">
 <p class="text-center">
   <span class=" glyphicon glyphicon-search" style="font-size: 5.2em;">
   </span>
@@ -21,7 +21,6 @@ Home
 
 </div>
 
-  </form>
 </div>
 
 <div class="row top-buffer">
@@ -45,7 +44,7 @@ Home
             <tr>
               <td>1</td>
               <td>NO2</td>
-              <td id ="no2">-</td>
+              <td id ="no2">-  {{  clientip }}</td>
             </tr>
             <tr>
               <td>2</td>
@@ -77,7 +76,7 @@ Home
       </div>
       <div class="col-md-4">
         <table class="table">
-          
+
           <tbody>
             <tr>
               <td>1</td>

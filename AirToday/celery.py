@@ -24,7 +24,7 @@ app.conf.beat_schedule = {
         # 'schedule': crontab(),  # change to `crontab(minute=0, hour=0)` if you want it to run daily at midnight
     },
     'sendmail': {
-        'task': 'airapp.tasks.sendmail',
+        'task': 'airapp.tasks.alertusers',
         'schedule': 30.0,
         # 'schedule': crontab(),  # change to `crontab(minute=0, hour=0)` if you want it to run daily at midnight
     },
