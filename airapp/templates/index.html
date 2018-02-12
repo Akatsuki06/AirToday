@@ -29,11 +29,17 @@ Home
     <div class="row">
       <div class="col-md-4">
         <div class="card">
-          <div class="card-header" id="status"> Status </div>
+          <div class="card-header" id="status"> {{status}} </div>
           <div class="card-body">
-            <h2 id="value">88</h2>
-            <h5 class="text-muted" id ="details">Subtitle</h5>
-            <p class="p-y-1" id="desc">Location, lat and lng</p>
+            <h2 id="value">{{value}}</h2>
+            <h5 class="text-muted" id ="details">
+            <br>Updated on: <br>{{updated}}
+            </h5>
+            <p class="p-y-1" id="desc">
+              <b>Location: </b>{{addr}}<br>
+              <b>Source: </b>{{source}}</br>
+              <b>Alert: </b>{{alert}}</br>
+            </p>
           </div>
         </div>
       </div>
@@ -44,32 +50,32 @@ Home
             <tr>
               <td>1</td>
               <td>NO2</td>
-              <td id ="no2">-  {{  clientip }}</td>
+              <td id ="no2"></td>
             </tr>
             <tr>
               <td>2</td>
               <td>O3</td>
-              <td id="o3">-</td>
+              <td id="o3">{{o3}}</td>
             </tr>
             <tr>
               <td>3</td>
               <td>PM2.5</td>
-              <td id ="pm25">-</td>
+              <td id ="pm25">{{pm25}}</td>
             </tr>
             <tr>
               <td>4</td>
               <td>SO2</td>
-              <td id ="so2">-</td>
+              <td id ="so2">{{so2}}</td>
             </tr>
             <tr>
               <td>5</td>
               <td>PM10</td>
-              <td id ="pm10">-</td>
+              <td id ="pm10">{{pm10}}</td>
             </tr>
             <tr>
               <td>6</td>
               <td>CO</td>
-              <td id ="co">-</td>
+              <td id ="co">{{co}}</td>
             </tr>
           </tbody>
         </table>
@@ -81,32 +87,32 @@ Home
             <tr>
               <td>1</td>
               <td>Humidity</td>
-              <td id="humidity">-</td>
+              <td id="humidity">{{humidity}}</td>
             </tr>
             <tr>
               <td>2</td>
               <td>Barometric Pressure</td>
-              <td id="barometricpressure">-</td>
+              <td id="barometricpressure">{{barometricpressure}}</td>
             </tr>
             <tr>
               <td>3</td>
               <td>Wind Speed</td>
-              <td id="windspeed">-</td>
+              <td id="windspeed">{{windspeed}}</td>
             </tr>
             <tr>
-              <td>1</td>
+              <td>4</td>
               <td>Wind Direction</td>
-              <td id="winddirection">-</td>
+              <td id="winddirection">{{winddirection}}</td>
             </tr>
             <tr>
-              <td>1</td>
+              <td>5</td>
               <td>Sun Rise</td>
-              <td id="sunrise">-</td>
+              <td id="sunrise">{{sunrise}}</td>
             </tr>
             <tr>
-              <td>1</td>
+              <td>6</td>
               <td>Sun Set</td>
-              <td id="sunset">-</td>
+              <td id="sunset">{{sunset}}</td>
             </tr>
           </tbody>
         </table>

@@ -2,7 +2,6 @@ from django.shortcuts import render, HttpResponse
 
 # Create your views here.
 from django.views.generic import View, TemplateView, CreateView
-from django.contrib.gis.geoip2 import GeoIP2
 import requests as req
 import json
 from . import forms, models
@@ -38,11 +37,23 @@ class IndexView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
         loc = Location(self.request)
-        context['clientip'] = loc.get_client_ip()
+        clientip = loc.get_client_ip()
+        clientip=cred.TEMP_IP
         context['appid'] = cred.AIRPOLLUTION_APPID
+        data= json.loads(loc.get_AQI())
+        context['status'] = data['data']['text']
+        context['value'] = data['data']['value']
+        context['updated'] = data['data']['updated']
+        coordinates= str(data['data']['coordinates']["latitude"])+\
+                        ","+\
+                        str(data['data']['coordinates']["longitude"])
+        addr = req.get("https://ipapi.co/{0}/json".format(clientip)).text
+        print(addr)
+        addr = json.loads(addr)
+        context['addr'] =  str(addr["city"]+','+addr["region_code"])
+        context['source'] = data['data']['source']['name']
+        context['alert'] = data['data']['alert']
+        for x in data['data']['aqiParams']:
+            key = x['name'].lower().replace(" ", "").replace(".", "")
+            context[key] = x['value']
         return context
-
-    # def get(self,request, **kwargs):
-    #     return render(request,'index.html')
-#get client ip here and put it in html and then use js to find lat and lng and
-#retrieve aqi

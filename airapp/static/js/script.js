@@ -5,7 +5,7 @@ function initialize() {
   if (title == "Register"){
     // if its register page
     console.log('register page running');
-    var latlng = new google.maps.LatLng(28.5355161,77.39102649999995);
+    var latlng = new google.maps.LatLng(30.7343,76.7933);
      var map = new google.maps.Map(document.getElementById('map'), {
        center: latlng,
        zoom: 13
@@ -43,9 +43,8 @@ function initialize() {
          marker.setPosition(place.geometry.location);
          marker.setVisible(true);
 
-         bindDataToForm(place.formatted_address,place.geometry.location.lat(),place.geometry.location.lng());
-         infowindow.setContent(place.formatted_address);
-         infowindow.open(map, marker);
+         bindDataToForm(place.formatted_address,place.geometry.location.lat(),
+                        place.geometry.location.lng());
 
      });
      // this function will work on marker move event into map
@@ -54,8 +53,8 @@ function initialize() {
          if (status == google.maps.GeocoderStatus.OK) {
            if (results[0]) {
                bindDataToForm(results[0].formatted_address,marker.getPosition().lat(),marker.getPosition().lng());
-               infowindow.setContent(results[0].formatted_address);
-               infowindow.open(map, marker);
+               // infowindow.setContent(results[0].formatted_address);
+               // infowindow.open(map, marker);
            }
          }
          });
@@ -66,29 +65,27 @@ function initialize() {
      var input = document.getElementById('searchInput');
      var autocomplete = new google.maps.places.Autocomplete(input);
 
-     httpGetIP()
      autocomplete.setComponentRestrictions({'country': 'in'});
      google.maps.event.addListener(autocomplete, 'place_changed', function() {
+       console.log('working..');
         var place = autocomplete.getPlace();
         var lat = place.geometry.location.lat();
         var lng = place.geometry.location.lng();
-        httpGet(lat,lng);
+        var addr = place.name;
+        httpGet(lat,lng,addr);
   });
 
   }
 
 
 }
-function setAll(text) {
+function setAll(text,addr) {
     var obj = JSON.parse(text);
     var params = obj.data.aqiParams;
     for (var i = 0; i < params.length; i++) {
         var name = ((params[i].name).toString()).toLowerCase();
         var value = (params[i].value).toString()
         name = name.replace(/[\W_]/g, "")
-        if(document.getElementById(name).innerHTML){
-          console.log(name);
-        }
         document.getElementById(name).innerHTML = value;
     }
     var status = obj.data.text.toString();
@@ -102,36 +99,30 @@ function setAll(text) {
                       obj.data.coordinates.longitude.toString();
     document.getElementById("status").innerHTML = status;
     document.getElementById("value").innerHTML = value;
-    document.getElementById("details").innerHTML = 'Updated on: '+updated;
-                                                    // '\n Temperature: '+temp+
-                                                    //   '\nsource: '+source;
-    document.getElementById("desc").innerHTML = '<b>Location: </b>'+coordinates+
-                                          '<br><b>Description:</b> '+alert+
-                                          '<br> <b>Source:</b> '+source;
+    document.getElementById("details").innerHTML = '<b>Updated on: </b>'+updated;
+    console.log(addr);
+    document.getElementById("desc").innerHTML = '<b>Location: </b>'+addr+
+                                          '<br><b>Source:</b> '+source+
+                                          '<br><b>Alert:</b> '+alert;
     document.getElementById("desc").style.backgroundColor = color;
 }
-function httpGet(lat,lng)
+function httpGet(lat,lng,addr)
 {
     var url = 'http://api.airpollutionapi.com/1.0/aqi?'+'lat='+lat+'&lon='+lng+
-                  '&APPID='+'{{ APPID }}';
+                  '&APPID=m953d6onf11vvufmc8gmugatqb';
     var xmlHttp = new XMLHttpRequest();
+    // xmlhttp.setRequestHeader("Access-Control-Allow-Origin","*");
+    //  xmlhttp.setRequestHeader("Access-Control-Allow-Credentials", "true");
+    //  xmlhttp.setRequestHeader("Access-Control-Allow-Methods", "GET");
+    //  xmlhttp.setRequestHeader("Access-Control-Allow-Headers", "Content-Type");
     xmlHttp.onreadystatechange = function(){
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-            setAll(xmlHttp.responseText);
+            setAll(xmlHttp.responseText,addr);
     }
     xmlHttp.open("GET", url, true); // true for asynchronous
     xmlHttp.send(null);
 }
 
-function httpGetIP(){
-  var ip = "{{ appid }}"
-  var url =' https://freegeoip.net/json/'
-
-
-  
-  console.log(ip);
-
-}
 
 function bindDataToForm(address,lat,lng){
    document.getElementById('locationid').value = address;

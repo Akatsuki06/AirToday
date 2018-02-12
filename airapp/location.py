@@ -3,7 +3,7 @@ import requests as req
 import json
 from AirToday import credentials as cred
 class Location():
-    """location class has functionality to get ip,loc,lat, aqi etc..."""
+    """location class has functionality to get ip,loc,lat aqi etc..."""
     def __init__(self, request=None):
         super(Location, self).__init__()
         self.request = request
@@ -19,13 +19,13 @@ class Location():
         'lon':lon,
         'APPID':cred.AIRPOLLUTION_APPID
         }
-        url = AIRPOLLUTION_APPURL
+        url = cred.AIRPOLLUTION_APPURL
         data = req.get(url,params=params)
-        return data.json
+        return data.text
 
     def get_location(self):
         ip=self.get_client_ip()
-        ip='169.149.218.89'
+        ip=cred.TEMP_IP
         user_data = 'https://ipinfo.io/{0}/json'.format(ip)
         data = json.loads(req.get(user_data).text)
         return data
@@ -41,4 +41,5 @@ class Location():
                 proxies.pop(0)
             if len(proxies) > 0:
                 ip = proxies[0]
+
         return ip
