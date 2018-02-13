@@ -15,13 +15,10 @@ def sayhello():
 
 @app.task
 def alertusers():
-    print('getting all users')
     users = models.CustomUser.objects.all()
-    loc = location()
     print('sending email')
     for user in users:
         data = json.load(loc.get_AQI(user.coordinates))
-        # data = json.load(open('aqi.json'))
         msg_body = 'Alert: \n'+data['data']['alert']+'\n\n Source: \n'+data['data']['source']['name']
         send_mail('Air Quality Index Notification',
                     msg_body,

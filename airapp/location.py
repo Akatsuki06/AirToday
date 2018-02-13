@@ -25,7 +25,6 @@ class Location():
 
     def get_location(self):
         ip=self.get_client_ip()
-        ip=cred.TEMP_IP
         user_data = 'https://ipinfo.io/{0}/json'.format(ip)
         data = json.loads(req.get(user_data).text)
         return data
@@ -37,7 +36,7 @@ class Location():
         if x_forwarded_for:
             proxies = x_forwarded_for.split(',')
             while (len(proxies) > 0 and
-                    proxies[0].startswith(PRIVATE_IPS_PREFIX)):
+                    proxies[0].startswith('PRIVATE_IPS_PREFIX')):
                 proxies.pop(0)
             if len(proxies) > 0:
                 ip = proxies[0]
