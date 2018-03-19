@@ -38,7 +38,7 @@ class IndexView(TemplateView):
         context = super(IndexView, self).get_context_data(**kwargs)
         loc = Location(self.request)
         clientip = loc.get_client_ip()
-        # clientip = cred.TEMP_IP
+        clientip = cred.TEMP_IP#temporary ip while running on localhost
         context['appid'] = cred.AIRPOLLUTION_APPID
         data= json.loads(loc.get_AQI())
         context['status'] = data['data']['text']

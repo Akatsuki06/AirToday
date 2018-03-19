@@ -24,8 +24,8 @@ class Location():
         return data.text
 
     def get_location(self):
-        ip=self.get_client_ip()
-        # ip = cred.TEMP_IP
+        ip = self.get_client_ip() 
+        ip = cred.TEMP_IP#temporary ip while running on localhost
         user_data = 'https://ipinfo.io/{0}/json'.format(ip)
         data = json.loads(req.get(user_data).text)
         return data
