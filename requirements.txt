@@ -2,7 +2,7 @@ argon2-cffi==16.3.0
 bcrypt==3.1.4
 cffi==1.11.2
 dj-database-url==0.4.2
-Django==2.0
+Django==2.2.18
 gunicorn==19.7.1
 olefile==0.44
 psycopg2==2.7.3.2
